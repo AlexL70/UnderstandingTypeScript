@@ -1,9 +1,12 @@
+type NumStr = number | string;
+type Conversion = "as-number" | "as-text";
+
 function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: "as-number" | "as-text"
-): number | string {
-  let combination: number | string;
+  input1: NumStr,
+  input2: NumStr,
+  resultConversion: Conversion
+): NumStr {
+  let combination: NumStr;
   if (
     (typeof input1 === "number" && typeof input2 === "number") ||
     resultConversion === "as-number"
