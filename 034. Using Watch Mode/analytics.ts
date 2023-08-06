@@ -1,1 +1,1 @@
-console.log("Sending analytics data from tsc project...");
+console.log("Sending analytics data...");
