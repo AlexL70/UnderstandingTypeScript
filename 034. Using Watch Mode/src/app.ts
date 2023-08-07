@@ -6,5 +6,6 @@ function clicked(message: string) {
 
 //  some test comment
 if (button) {
+  let name = "Alex";
   button.addEventListener("click", clicked.bind(this, "Button clicked!"));
 }
