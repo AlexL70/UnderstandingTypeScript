@@ -1,5 +1,10 @@
-const userName = "Alex";
-let age = 30;
-age = 53;
+const add = (a: number, b: number) => a + b;
+const printOutput: (a: any) => void = (output) => console.log(output);
 
-console.log(userName);
+printOutput(add(3, 5));
+
+const button = document.querySelector("button");
+
+if (button) {
+  button.addEventListener("click", (event) => printOutput(event));
+}
