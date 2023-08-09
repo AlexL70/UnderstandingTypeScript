@@ -3,7 +3,13 @@ class Department {
   constructor(name: string) {
     this.name = name;
   }
+
+  describe(this: Department) {
+    console.log(`Department: "${this.name}"`);
+  }
 }
 
-const dep = new Department("My First Department");
-console.log(dep);
+const dep = new Department("Accounting");
+dep.describe();
+const depCopy = { describe: dep.describe, name: "HR" };
+depCopy.describe();
