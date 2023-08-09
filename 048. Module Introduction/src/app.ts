@@ -1,7 +1,7 @@
-const add = (a: number, b: number) => a + b;
+const add = (a: number, b: number = 1) => a + b;
 const printOutput: (a: any) => void = (output) => console.log(output);
 
-printOutput(add(3, 5));
+printOutput(add(5));
 
 const button = document.querySelector("button");
 
