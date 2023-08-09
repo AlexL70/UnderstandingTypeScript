@@ -8,3 +8,17 @@ const button = document.querySelector("button");
 if (button) {
   button.addEventListener("click", (event) => printOutput(event));
 }
+
+const hobbies = ["Sports", "Cooking"];
+const activeHobbied = ["Hiking"];
+activeHobbied.push(...hobbies);
+console.log(activeHobbied);
+
+const person = {
+  name: "Alex",
+  age: 40,
+};
+
+const copiedPerson = { ...person };
+person.age = 53;
+console.log(copiedPerson);
