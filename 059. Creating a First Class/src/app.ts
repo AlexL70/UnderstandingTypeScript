@@ -17,8 +17,15 @@ class Department {
   }
 }
 
-const dep = new Department("ACC_DEP", "Accounting");
+class ITDepartment extends Department {
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT Department");
+  }
+}
+
+const dep = new ITDepartment("IT_DEP", ["Alex Levinson"]);
 dep.describe();
 dep.addEmployee("Tom Waits");
 dep.addEmployee("Keith Richard");
 dep.printEmployeesInfo();
+console.log(dep);
