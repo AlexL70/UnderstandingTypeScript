@@ -24,8 +24,25 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  get recentReport(): string {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw Error("No reports were added yet.");
+  }
+
+  set recentReport(value: string) {
+    if (!value) {
+      throw Error("recentReport value is undefined; cannot set");
+    }
+    this.addReport(value);
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, "Accounting Department");
+    this.lastReport = this.reports[0];
   }
 
   public addEmployee(this: AccountingDepartment, employee: string): void {
@@ -37,6 +54,7 @@ class AccountingDepartment extends Department {
 
   addReport(this: AccountingDepartment, report: string) {
     this.reports.push(report);
+    this.lastReport = report;
   }
 
   printReports() {
@@ -54,7 +72,17 @@ console.log(it);
 const accounting = new AccountingDepartment("ACC_DEP", []);
 accounting.addEmployee("Alex");
 accounting.addEmployee("Max");
+try {
+  console.log(accounting.recentReport);
+} catch (error) {
+  console.log(error);
+}
+
+// next two lines do the same thing – each one adds a report to the reports array
+// and then sets lastReport property to the same value
 accounting.addReport("Something went wrong.");
-accounting.addReport("Something has been fixed.");
+accounting.recentReport = "Something has been fixed.";
+
+console.log(accounting.recentReport);
 accounting.printReports();
 console.log(accounting);
