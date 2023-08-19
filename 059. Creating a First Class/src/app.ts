@@ -23,9 +23,28 @@ class ITDepartment extends Department {
   }
 }
 
-const dep = new ITDepartment("IT_DEP", ["Alex Levinson"]);
-dep.describe();
-dep.addEmployee("Tom Waits");
-dep.addEmployee("Keith Richard");
-dep.printEmployeesInfo();
-console.log(dep);
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting Department");
+  }
+
+  addReport(report: string) {
+    this.reports.push(report);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment("IT_DEP", ["Alex Levinson"]);
+it.describe();
+it.addEmployee("Tom Waits");
+it.addEmployee("Keith Richard");
+it.printEmployeesInfo();
+console.log(it);
+
+const accounting = new AccountingDepartment("ACC_DEP", []);
+accounting.addReport("Something went wrong.");
+accounting.addReport("Something has been fixed.");
+accounting.printReports();
