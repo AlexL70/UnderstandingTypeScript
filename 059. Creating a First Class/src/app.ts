@@ -1,5 +1,5 @@
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -14,5 +14,8 @@ class Person implements Greetable {
 
 let user: Greetable;
 user = new Person("Alex", 53);
+//  Because name property in readonly in Greeteable interface
+//  trying to set it anywhere but a constructor, will cause an error
+//user.name = "Max";
 user.greet("Hi there - I am");
 console.log(user);
