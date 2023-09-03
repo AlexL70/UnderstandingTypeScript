@@ -107,3 +107,10 @@ let bird: Bird = { flyingSpeen: 10, type: "bird" };
 let horse: Horse = { runningSpeed: 5, type: "horse" };
 moveAnimal(bird);
 moveAnimal(horse);
+
+//const elem = <HTMLInputElement>document.getElementById("user-input");
+const elem = document.getElementById("user-input");
+
+if (elem) {
+  (elem as HTMLInputElement).value = "Hi there!";
+}
