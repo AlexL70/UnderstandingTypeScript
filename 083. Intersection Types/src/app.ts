@@ -131,3 +131,17 @@ const errorBag: ErrorContainer = {
   userName: "Must start with a capital character!",
 };
 console.log(errorBag);
+
+const fetchedUserData = {
+  id: "u000",
+  name: "Alex",
+  job: { title: "Software Developer", description: "Writing code for money." },
+};
+
+// ? symbol here checks if property exists and returns null if it does not
+console.log(fetchedUserData?.job?.title);
+
+const userInput = null;
+// ?? operator replaces null or undefined value with a fallback
+const storedData = userInput ?? "DEFAULT";
+console.log(storedData);
