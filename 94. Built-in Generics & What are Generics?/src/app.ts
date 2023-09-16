@@ -13,3 +13,9 @@ promise.then((data) => {
 
 const myFunc = () => promise;
 myFunc();
+
+function merge<T extends {}, U>(objA: T, objB: U) {
+  return Object.assign<T, U>(objA, objB);
+}
+const merged = merge({ name: "Alex" }, { age: 52 });
+console.log(merged.name, merged.age);
