@@ -22,3 +22,24 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
 //const merged = merge({ name: "Alex" }, 52);
 const merged = merge({ name: "Alex" }, { age: 52 });
 console.log(merged.name, merged.age);
+
+interface Lengthy {
+  length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = "Got no value.";
+  if (Array.isArray(element) || typeof element === "string") {
+    if (element.length === 1) {
+      descriptionText = "Got 1 element.";
+    } else if (element.length > 1) {
+      descriptionText = `Got ${element.length} elements.`;
+    }
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe([]));
+console.log(countAndDescribe([22]));
+console.log(countAndDescribe([22, 33, 44]));
+console.log(countAndDescribe("Hi there!"));
