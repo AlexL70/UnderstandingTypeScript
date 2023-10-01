@@ -52,3 +52,37 @@ function extractAndConvert<T extends object, U extends keyof T>(
 }
 
 console.log(`Returned: ${extractAndConvert({ name: "Alex" }, "name")}`);
+
+class DataStorage<T extends number | string | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    const index = this.data.indexOf(item);
+    if (index >= 0) {
+      this.data.splice(index, 1);
+    }
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem("First item.");
+textStorage.addItem("Second item.");
+textStorage.addItem("Third item.");
+textStorage.removeItem("Second item.");
+console.log(textStorage.getItems());
+const numStorage = new DataStorage<number>();
+numStorage.addItem(22);
+numStorage.addItem(23);
+numStorage.addItem(24);
+numStorage.removeItem(22);
+console.log(numStorage.getItems());
+// Would not compile because of constraint
+// const objStorage = new DataStorage<object>();
