@@ -43,3 +43,12 @@ console.log(countAndDescribe([]));
 console.log(countAndDescribe([22]));
 console.log(countAndDescribe([22, 33, 44]));
 console.log(countAndDescribe("Hi there!"));
+
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return obj[key];
+}
+
+console.log(`Returned: ${extractAndConvert({ name: "Alex" }, "name")}`);
