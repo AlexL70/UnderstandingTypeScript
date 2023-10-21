@@ -3,7 +3,17 @@ function Logger(description: string) {
     console.log(`${description}\n${constructor.toString()}`);
   };
 }
-@Logger(`Logging ${Person.name} class definition...`)
+
+function WithTemplate(htmlTemplate: string, hookId: string) {
+  return function (_: Function) {
+    const hookEl = document.getElementById(hookId);
+    if (hookEl) {
+      hookEl.innerHTML = htmlTemplate;
+    }
+  };
+}
+//@Logger(`Logging ${Person.name} class definition...`)
+@WithTemplate(`<h2>Hey Joe!</h2>`, "app")
 class Person {
   name = "Alex";
 
