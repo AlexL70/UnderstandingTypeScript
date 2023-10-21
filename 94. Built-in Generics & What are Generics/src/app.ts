@@ -86,3 +86,34 @@ numStorage.removeItem(22);
 console.log(numStorage.getItems());
 // Would not compile because of constraint
 // const objStorage = new DataStorage<object>();
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  // in partial object all properties are optional
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+let crsGl = createCourseGoal(
+  "Type Script",
+  "Cool TypeScript course",
+  new Date(2023, 11, 31)
+);
+console.log(crsGl);
+
+const people: Readonly<string[]> = ["Alex", "Max"];
+// people.push("Manu"); // compilation error
+// people.pop(); // compilation error
+console.log(people);
