@@ -1,7 +1,9 @@
-function Logger(constructor: Function) {
-  console.log(`Logging class definition...\n${constructor.toString()}`);
+function Logger(description: string) {
+  return function (constructor: Function) {
+    console.log(`${description}\n${constructor.toString()}`);
+  };
 }
-@Logger
+@Logger(`Logging ${Person.name} class definition...`)
 class Person {
   name = "Alex";
 
@@ -11,5 +13,5 @@ class Person {
 }
 
 // Decorator runs even before class is instantiated.
-//const person = new Person();
-//console.log(person);
+const person = new Person();
+console.log(person);
