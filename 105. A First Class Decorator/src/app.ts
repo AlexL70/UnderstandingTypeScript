@@ -29,3 +29,29 @@ class Person {
 // Decorator runs even before class is instantiated.
 const person = new Person();
 console.log(person);
+
+function Log(target: any, propertyName: string | Symbol) {
+  console.log("Property decorator running...");
+  console.log(target, propertyName);
+}
+
+class Product {
+  @Log
+  title: string;
+  private _price: number;
+  set price(value: number) {
+    if (value <= 0) {
+      throw new Error("Invalid price - should be positive!");
+    }
+    this._price = value;
+  }
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this._price = price;
+  }
+
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax);
+  }
+}
