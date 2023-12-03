@@ -7,12 +7,20 @@ function Logger(description: string) {
 
 function WithTemplate(htmlTemplate: string, hookId: string) {
   console.log("Template's factory running...");
-  return function (_: Function) {
-    console.log("Rendering template...");
-    const hookEl = document.getElementById(hookId);
-    if (hookEl) {
-      hookEl.innerHTML = htmlTemplate;
-    }
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    originalConstructor: T
+  ) {
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log("Rendering template...");
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = htmlTemplate;
+          hookEl.querySelector("h2")!.textContent = `Hey ${this.name}!`;
+        }
+      }
+    };
   };
 }
 
