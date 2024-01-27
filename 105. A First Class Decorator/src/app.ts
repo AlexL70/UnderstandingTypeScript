@@ -90,3 +90,33 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+function AutoBind(
+  _target: any,
+  _methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      const boundFunction = originalMethod.bind(this);
+      return boundFunction;
+    },
+  };
+  return adjustedDescriptor;
+}
+
+class Printer {
+  message = "This works!";
+
+  @AutoBind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+const button = document.querySelector("#myButton")!;
+button.addEventListener("click", p.showMessage);
